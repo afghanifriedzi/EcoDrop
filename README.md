@@ -1,13 +1,14 @@
-# ♻️ EcoDrop — Bank Sampah Digital & Poin Sosial
-By Friedzi Hafizh Al Afghani (123250004) & Rafi Wiksa Abqary Fitra (123250230)
+# EcoDrop — Bank Sampah Digital & Poin Sosial
+Friedzi Hafizh Al Afghani (123250004) 
+Rafi Wiksa Abqary Fitra (123250230)
 
 Aplikasi web layanan publik dan sosial untuk mengelola penyetoran sampah anorganik rumah tangga yang dikonversi menjadi poin bantuan sosial.
 
-🌐 **Live Demo Online:** [http://ecodrop-app.infinityfreeapp.com](http://ecodrop-app.infinityfreeapp.com)
+Live Demo Online: [http://ecodrop-app.infinityfreeapp.com](http://ecodrop-app.infinityfreeapp.com)
 
 ---
 
-## ✨ Fitur Utama
+## Fitur Utama
 - **Multi-Role Authentication:** Pemisahan hak akses dan sesi antara **Warga** dan **Admin / Petugas**.
 - **CRUD Setoran Sampah:** Pengajuan jadwal setor (Antar ke Pos / Jemput Kurir), pencatatan kategori & berat sampah, verifikasi status oleh petugas, serta pembatalan transaksi.
 - **Kalkulasi Poin Otomatis:** Konversi berat sampah (Kg) ke poin sosial berdasarkan tarif per kategori.
@@ -16,7 +17,7 @@ Aplikasi web layanan publik dan sosial untuk mengelola penyetoran sampah anorgan
 
 ---
 
-## 🔑 Akun Demo Pengujian
+## Akun Demo Pengujian
 | Peran | Email | Password |
 | :--- | :--- | :--- |
 | **Admin / Petugas** | `admin@ecodrop.id` | `password` |
@@ -24,14 +25,14 @@ Aplikasi web layanan publik dan sosial untuk mengelola penyetoran sampah anorgan
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 - **Backend:** PHP Native
 - **Database:** MySQL / MariaDB
 - **Frontend:** HTML5, Bootstrap 5, Bootstrap Icons, Chart.js
 
 ---
 
-## 💻 Cara Menjalankan di Lokal (XAMPP)
+## Cara Menjalankan di Lokal (XAMPP)
 1. Salin folder proyek ke dalam direktori `C:\xampp\htdocs\EcoDrop`.
 2. Aktifkan modul **Apache** dan **MySQL** di XAMPP Control Panel.
 3. Buka `http://localhost/phpmyadmin`, buat database bernama `ecodrop`, lalu impor file `database.sql`.
