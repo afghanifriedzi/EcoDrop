@@ -1,7 +1,23 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+mysqli_report(MYSQLI_REPORT_OFF);
+
+// Paksa cookie sesi hanya berlaku selama browser terbuka + batas idle 15 menit
+ini_set('session.cookie_lifetime', 0);
+session_set_cookie_params(0);
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// Auto-logout jika tidak ada aktivitas selama 15 menit (900 detik)
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 900)) {
+    session_unset();
+    session_destroy();
+    session_start();
+}
+$_SESSION['last_activity'] = time();
 
 $host = 'localhost';
 $user = 'root';
@@ -42,5 +58,21 @@ function hitungPoin($kategori, $berat_kg) {
     $tarif = getTarifPoin();
     $rate = $tarif[$kategori] ?? 50;
     return (int) round($berat_kg * $rate);
+}
+
+// Auto-logout otomatis jika tab ditutup lalu dibuka kembali di tab baru
+if (isLoggedIn() && basename($_SERVER['PHP_SELF']) !== 'logout.php') {
+    ob_start(function ($html) {
+        if (stripos($html, '</head>') !== false) {
+            $initScript = '';
+            if (!empty($_SESSION['init_tab'])) {
+                unset($_SESSION['init_tab']);
+                $initScript = "sessionStorage.setItem('ecodrop_tab', '1');";
+            }
+            $guard = "<script>{$initScript}if(!sessionStorage.getItem('ecodrop_tab')){window.location.replace('logout.php');}</script>\n</head>";
+            return str_ireplace('</head>', $guard, $html);
+        }
+        return $html;
+    });
 }
 ?>

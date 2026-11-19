@@ -22,9 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user   = mysqli_fetch_assoc($result);
 
         if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['nama']    = $user['nama'];
-            $_SESSION['role']    = $user['role'];
+            $_SESSION['user_id']  = $user['id'];
+            $_SESSION['nama']     = $user['nama'];
+            $_SESSION['role']     = $user['role'];
+            $_SESSION['init_tab'] = true; // <-- TAMBAHKAN BARIS INI
             header("Location: dashboard.php");
             exit;
         } else {
