@@ -13,6 +13,20 @@ $qLeader = mysqli_query($conn, "
     ORDER BY total_poin DESC
     LIMIT 5
 ");
+
+$qChart = mysqli_query($conn, "
+    SELECT kategori, COALESCE(SUM(berat_kg),0) AS total_berat
+    FROM setoran
+    WHERE status = 'Terverifikasi'
+    GROUP BY kategori
+    ORDER BY total_berat DESC
+");
+$chartLabels = [];
+$chartData   = [];
+while ($c = mysqli_fetch_assoc($qChart)) {
+    $chartLabels[] = $c['kategori'];
+    $chartData[]   = (float) $c['total_berat'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -136,9 +150,22 @@ $qLeader = mysqli_query($conn, "
             </div>
         </div>
 
-        <!-- Tabel Tarif Konversi Poin -->
-        <div class="col-lg-5">
-            <div class="card border-0 shadow-sm h-100">
+        <!-- Kolom Kanan: Grafik & Tarif -->
+        <div class="col-lg-5 d-flex flex-column gap-4">
+            <!-- Grafik Komposisi Sampah -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold text-success"><i class="bi bi-pie-chart-fill me-2"></i>Komposisi Sampah Terkelola (Kg)</h5>
+                </div>
+                <div class="card-body">
+                    <div style="max-height: 230px;" class="d-flex justify-content-center">
+                        <canvas id="sampahChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabel Tarif Konversi Poin -->
+            <div class="card border-0 shadow-sm">
                 <div class="card-header bg-white py-3">
                     <h5 class="mb-0 fw-bold text-success"><i class="bi bi-calculator me-2"></i>Tarif Konversi Poin Sampah</h5>
                 </div>
@@ -161,6 +188,31 @@ $qLeader = mysqli_query($conn, "
 <footer class="bg-white border-top py-4 text-center text-muted small">
     &copy; <?= date('Y') ?> EcoDrop — Bank Sampah Digital &amp; Poin Sosial
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('sampahChart');
+if (ctx) {
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: <?= json_encode($chartLabels) ?>,
+            datasets: [{
+                data: <?= json_encode($chartData) ?>,
+                backgroundColor: ['#198754', '#ffc107', '#0dcaf0', '#6f42c1', '#fd7e14'],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'right' }
+            }
+        }
+    });
+}
+</script>
 
 </body>
 </html>

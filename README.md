@@ -1,23 +1,38 @@
-# EcoDrop — Bank Sampah Digital & Poin Sosial
+# ♻️ EcoDrop — Bank Sampah Digital & Poin Sosial
 
-Aplikasi web layanan publik berbasis PHP Native dan MySQL untuk mendigitalisasi penyetoran sampah terpilah masyarakat serta mengonversinya secara transparan menjadi poin bantuan sosial.
+Aplikasi web layanan publik dan sosial untuk mengelola penyetoran sampah anorganik rumah tangga yang dikonversi menjadi poin bantuan sosial.
 
-## Fitur Utama
-- **Autentikasi & Multi-Role Session:** Registrasi warga, login, logout, serta pemisahan hak akses antara **Admin/Petugas** dan **Warga**.
-- **Manajemen Setoran (CRUD):** Pengajuan setor sampah, riwayat transaksi, koreksi timbangan & verifikasi status oleh petugas, serta penghapusan data.
-- **Kalkulator Poin Real-Time:** Estimasi perolehan poin dan nilai konversi rupiah otomatis berdasarkan jenis dan berat sampah.
-- **Leaderboard Kontributor:** Peringkat warga dengan kontribusi pengelolaan sampah tertinggi.
-- **Pencarian & Multi-Filter:** Filter transaksi berdasarkan kata kunci, kategori sampah, dan status verifikasi.
-- **Cetak Struk Digital:** Bukti transaksi resmi siap cetak maupun simpan ke PDF.
+🌐 **Live Demo Online:** [http://ecodrop-app.infinityfreeapp.com](http://ecodrop-app.infinityfreeapp.com)
 
-## Akun Pengujian (Demo)
-| Role | Email | Kata Sandi |
+---
+
+## ✨ Fitur Utama
+- **Multi-Role Authentication:** Pemisahan hak akses dan sesi antara **Warga** dan **Admin / Petugas**.
+- **CRUD Setoran Sampah:** Pengajuan jadwal setor (Antar ke Pos / Jemput Kurir), pencatatan kategori & berat sampah, verifikasi status oleh petugas, serta pembatalan transaksi.
+- **Kalkulasi Poin Otomatis:** Konversi berat sampah (Kg) ke poin sosial berdasarkan tarif per kategori.
+- **Dashboard Statistik & Grafik Interaktif:** Visualisasi komposisi sampah terkelola menggunakan **Chart.js** serta *Leaderboard Top Kontributor Warga*.
+- **Pencarian, Filter & Cetak Struk:** Filter transaksi berdasarkan status dan pencetakan bukti setoran siap cetak.
+
+---
+
+## 🔑 Akun Demo Pengujian
+| Peran | Email | Password |
 | :--- | :--- | :--- |
 | **Admin / Petugas** | `admin@ecodrop.id` | `password` |
 | **Warga** | `raka@gmail.com` | `password` |
 
-## Cara Menjalankan di Localhost
-1. Salin folder proyek ke dalam direktori `htdocs` (XAMPP) atau `www` (Laragon).
-2. Buka `http://localhost/phpmyadmin` dan import file `database.sql`.
-3. Sesuaikan konfigurasi koneksi database pada file `config.php` jika diperlukan.
-4. Akses aplikasi melalui browser di `http://localhost/ecodrop`.
+---
+
+## 🛠️ Teknologi yang Digunakan
+- **Backend:** PHP Native
+- **Database:** MySQL / MariaDB
+- **Frontend:** HTML5, Bootstrap 5, Bootstrap Icons, Chart.js
+
+---
+
+## 💻 Cara Menjalankan di Lokal (XAMPP)
+1. Salin folder proyek ke dalam direktori `C:\xampp\htdocs\EcoDrop`.
+2. Aktifkan modul **Apache** dan **MySQL** di XAMPP Control Panel.
+3. Buka `http://localhost/phpmyadmin`, buat database bernama `ecodrop`, lalu impor file `database.sql`.
+4. Pastikan pengaturan di `config.php` menggunakan kredensial lokal (`host: localhost`, `user: root`, `pass: ''`, `db: ecodrop`).
+5. Akses aplikasi melalui `http://localhost/EcoDrop`.
