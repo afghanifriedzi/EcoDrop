@@ -62,14 +62,15 @@ function hitungPoin($kategori, $berat_kg) {
 
 // Auto-logout otomatis jika tab ditutup lalu dibuka kembali di tab baru
 if (isLoggedIn() && basename($_SERVER['PHP_SELF']) !== 'logout.php') {
-    ob_start(function ($html) {
+    $logoutUrl = (basename($_SERVER['PHP_SELF']) === 'index.php') ? 'logout.php?to=index' : 'logout.php';
+    ob_start(function ($html) use ($logoutUrl) {
         if (stripos($html, '</head>') !== false) {
             $initScript = '';
             if (!empty($_SESSION['init_tab'])) {
                 unset($_SESSION['init_tab']);
                 $initScript = "sessionStorage.setItem('ecodrop_tab', '1');";
             }
-            $guard = "<script>{$initScript}if(!sessionStorage.getItem('ecodrop_tab')){window.location.replace('logout.php');}</script>\n</head>";
+            $guard = "<script>{$initScript}if(!sessionStorage.getItem('ecodrop_tab')){window.location.replace('{$logoutUrl}');}</script>\n</head>";
             return str_ireplace('</head>', $guard, $html);
         }
         return $html;
