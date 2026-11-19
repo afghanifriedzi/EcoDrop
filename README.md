@@ -1,4 +1,5 @@
 # ♻️ EcoDrop — Bank Sampah Digital & Poin Sosial
+By Friedzi Hafizh Al Afghani (123250004) & Rafi Wiksa Abqary Fitra (123250230)
 
 Aplikasi web layanan publik dan sosial untuk mengelola penyetoran sampah anorganik rumah tangga yang dikonversi menjadi poin bantuan sosial.
 
