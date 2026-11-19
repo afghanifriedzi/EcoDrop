@@ -36,6 +36,16 @@ while ($c = mysqli_fetch_assoc($qChart)) {
     <title>EcoDrop - Bank Sampah Digital &amp; Poin Sosial</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .hero-slide-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+        }
+        #heroCarousel .carousel-indicators {
+            margin-bottom: 0.75rem;
+        }
+    </style>
 </head>
 <body class="bg-light">
 
@@ -54,22 +64,126 @@ while ($c = mysqli_fetch_assoc($qChart)) {
     </div>
 </nav>
 
-<header class="bg-success text-white py-5 text-center">
-    <div class="container">
-        <span class="badge bg-warning text-dark mb-2 px-3 py-2 rounded-pill fw-semibold">Layanan Publik &amp; Lingkungan</span>
-        <h1 class="display-5 fw-bold mb-3">Ubah Sampah Terpilah Jadi Poin Sosial</h1>
-        <p class="lead mx-auto mb-4" style="max-width: 650px;">
-            Setorkan sampah anorganik dari rumah, kumpulkan poin sosial yang dapat ditukar kebutuhan pokok, dan pantau dampak nyata bagi lingkungan sekitar.
-        </p>
-        <div class="d-flex flex-column flex-sm-row justify-content-center gap-2 px-4">
-            <?php if (isLoggedIn()): ?>
-                <a href="tambah.php" class="btn btn-warning btn-lg fw-bold text-dark">Ajukan Setor Sampah</a>
-                <a href="dashboard.php" class="btn btn-outline-light btn-lg">Buka Dashboard</a>
-            <?php else: ?>
-                <a href="register.php" class="btn btn-warning btn-lg fw-bold text-dark">Mulai Setor Sekarang</a>
-                <a href="login.php" class="btn btn-outline-light btn-lg">Masuk Akun</a>
-            <?php endif; ?>
+<!-- Hero Carousel Promosi Kebersihan & Daur Ulang -->
+<header class="bg-success text-white position-relative">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
+
+        <div class="carousel-inner py-5">
+            <!-- Slide 1: Kampanye Utama -->
+            <div class="carousel-item active">
+                <div class="container py-2">
+                    <div class="row align-items-center justify-content-center g-4">
+                        <div class="col-lg-7 text-center text-lg-start">
+                            <span class="badge bg-warning text-dark mb-2 px-3 py-2 rounded-pill fw-semibold">
+                                <i class="bi bi-globe-asia-australia me-1"></i>Layanan Publik &amp; Lingkungan
+                            </span>
+                            <h1 class="display-5 fw-bold mb-3">Ubah Sampahmu Jadi Poin Sosial</h1>
+                            <p class="lead mb-4">
+                                Setorkan sampah anorganik dari rumah, kumpulkan poin sosial yang dapat ditukar kebutuhan pokok, dan pantau dampak nyata bagi lingkungan sekitar.
+                            </p>
+                            <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-2">
+                                <?php if (isLoggedIn()): ?>
+                                    <a href="tambah.php" class="btn btn-warning btn-lg fw-bold text-dark">Ajukan Setor Sampah</a>
+                                    <a href="dashboard.php" class="btn btn-outline-light btn-lg">Buka Dashboard</a>
+                                <?php else: ?>
+                                    <a href="register.php" class="btn btn-warning btn-lg fw-bold text-dark">Mulai Setor Sekarang</a>
+                                    <a href="login.php" class="btn btn-outline-light btn-lg">Masuk Akun</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-none d-lg-block">
+                            <div class="hero-slide-card rounded-4 p-4 text-center shadow-sm">
+                                <i class="bi bi-recycle text-warning" style="font-size: 5rem;"></i>
+                                <h5 class="fw-bold mt-2 mb-1">Gerakan Zero Waste</h5>
+                                <p class="small text-white-50 mb-0">Kurangi timbunan TPA mulai dari pemilahan sampah di rumah tangga.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Edukasi Pilah Sampah -->
+            <div class="carousel-item">
+                <div class="container py-2">
+                    <div class="row align-items-center justify-content-center g-4">
+                        <div class="col-lg-7 text-center text-lg-start">
+                            <span class="badge bg-light text-success mb-2 px-3 py-2 rounded-pill fw-semibold">
+                                <i class="bi bi-stars me-1"></i>Kampanye Lingkungan Bersih
+                            </span>
+                            <h1 class="display-5 fw-bold mb-3">Pilah dari Rumah, Lingkungan Makin Sehat</h1>
+                            <p class="lead mb-4">
+                                Pisahkan botol plastik, kardus, logam, kaca, dan elektronik bekas agar mudah didaur ulang sekaligus bernilai poin tinggi hingga <strong>50 Poin/Kg</strong>.
+                            </p>
+                            <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-2">
+                                <?php if (isLoggedIn()): ?>
+                                    <a href="tambah.php" class="btn btn-warning btn-lg fw-bold text-dark">Setor Sampah Terpilah</a>
+                                <?php else: ?>
+                                    <a href="register.php" class="btn btn-warning btn-lg fw-bold text-dark">Gabung Warga Peduli</a>
+                                    <a href="login.php" class="btn btn-outline-light btn-lg">Masuk Akun</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-none d-lg-block">
+                            <div class="hero-slide-card rounded-4 p-4 text-center shadow-sm">
+                                <div class="d-flex justify-content-center gap-3 text-warning mb-2" style="font-size: 3rem;">
+                                    <i class="bi bi-cup-straw"></i>
+                                    <i class="bi bi-box2-heart"></i>
+                                    <i class="bi bi-cpu"></i>
+                                </div>
+                                <h5 class="fw-bold mt-2 mb-1">5 Kategori Terkelola</h5>
+                                <p class="small text-white-50 mb-0">Plastik, Kertas/Kardus, Logam/Kaleng, Kaca, dan Sampah Elektronik.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Layanan Jemput & Sembako -->
+            <div class="carousel-item">
+                <div class="container py-2">
+                    <div class="row align-items-center justify-content-center g-4">
+                        <div class="col-lg-7 text-center text-lg-start">
+                            <span class="badge bg-warning text-dark mb-2 px-3 py-2 rounded-pill fw-semibold">
+                                <i class="bi bi-truck me-1"></i>Praktis &amp; Bermanfaat
+                            </span>
+                            <h1 class="display-5 fw-bold mb-3">Bisa Antar ke Pos atau Jemput Kurir</h1>
+                            <p class="lead mb-4">
+                                Tidak sempat ke pos bank sampah? Pilih metode <strong>Jemput Kurir</strong> saat mengajukan setoran dan tukarkan poinmu menjadi paket bantuan sosial.
+                            </p>
+                            <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-2">
+                                <?php if (isLoggedIn()): ?>
+                                    <a href="tambah.php" class="btn btn-warning btn-lg fw-bold text-dark">Pesan Jemput Kurir</a>
+                                <?php else: ?>
+                                    <a href="register.php" class="btn btn-warning btn-lg fw-bold text-dark">Daftar Gratis Sekarang</a>
+                                    <a href="login.php" class="btn btn-outline-light btn-lg">Masuk Akun</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-none d-lg-block">
+                            <div class="hero-slide-card rounded-4 p-4 text-center shadow-sm">
+                                <i class="bi bi-bag-heart-fill text-warning" style="font-size: 5rem;"></i>
+                                <h5 class="fw-bold mt-2 mb-1">1 Poin = Rp 50</h5>
+                                <p class="small text-white-50 mb-0">Akumulasi poin otomatis tercatat dan siap dicetak sebagai bukti sah.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" style="width: 5%;">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Sebelumnya</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" style="width: 5%;">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Berikutnya</span>
+        </button>
     </div>
 </header>
 
@@ -189,6 +303,7 @@ while ($c = mysqli_fetch_assoc($qChart)) {
     &copy; <?= date('Y') ?> EcoDrop — Bank Sampah Digital &amp; Poin Sosial
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 const ctx = document.getElementById('sampahChart');
