@@ -30,7 +30,7 @@ if ($role === 'admin') {
 }
 $summary = mysqli_fetch_assoc($qSummary);
 
-// Filter & Search
+// Filter and Search
 $search   = trim($_GET['search'] ?? '');
 $kategori = $_GET['kategori'] ?? '';
 $status   = $_GET['status'] ?? '';
